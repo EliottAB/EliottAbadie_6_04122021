@@ -2,6 +2,7 @@
 <html>
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link href="css/photographer.css" rel="stylesheet">
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
@@ -12,9 +13,10 @@
       <img src="assets/images/logo.png" class="logo" />
     </header>
     <main id="main">
-      <div class="photograph-header">
+      <header class="photograph-header">
+        <section class="photographer_section"></section>
         <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
-      </div>
+      </header>
     </main>
     <div id="contact_modal">
 			<div class="modal">
@@ -25,12 +27,14 @@
 				<form>
 					<div>
 						<label>Prénom</label>
-						<input />
+						<input/>
 					</div>
           <button class="contact_button">Envoyer</button>
 				</form>
 			</div>
 		</div>
     <script src="/scripts/utils/contactForm.js"></script>
+    <script src="/scripts/pages/photographer.js"></script>
+    <script src="/scripts/factories/photographer.js"></script>
   </body>
 </html>
