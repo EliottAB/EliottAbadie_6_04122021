@@ -5,7 +5,7 @@ body {
 }
 
 
-.header-home {
+header{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -27,7 +27,8 @@ h1 {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 4.37em;
-    margin-top: 6.25em;
+    margin: 6.25em 0;
+    text-align: center;
 }
 
 .photographer_section article {
@@ -63,7 +64,7 @@ h1 {
     color: #757575;
 }
 
-@media screen and (max-width: 1100px){
+@media screen and (max-width: 920px){
     body{
         font-size: 2vw;
     }

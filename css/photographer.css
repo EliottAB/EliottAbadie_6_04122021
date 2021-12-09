@@ -18,6 +18,7 @@
 .photographer_section{
     margin: 0 !important;
     width: 15em;
+    text-align: start;
 }
 
 .photographer_section article{
@@ -101,8 +102,14 @@ form input {
     border-radius: .3em;
 }
 
-@media screen and (max-width: 1100px){
+@media screen and (max-width: 920px){
     .photograph-header{
-        font-size: .8em;
+        font-size: 1.2em;
+        flex-direction: column-reverse;
+        height: 40em;
+    }
+    
+    .photographer_section{
+        text-align: center;
     }
 }
