@@ -64,6 +64,28 @@ h1 {
     color: #757575;
 }
 
+.categories{
+    margin-top: .5em;
+}
+
+.categorie{
+    margin: .3em .2em;
+    padding: .2em .5em;
+    font-size: 1em;
+    color: #901C1C;
+    background-color: white;
+    border: solid .1em rgb(200, 200, 200);
+    border-radius: 100em;
+    transition: color .3s, background-color .3s, border-color .3s;
+    cursor: pointer;
+}
+
+.activatetag{
+    color: white;
+    background-color: #901C1C;
+    border-color: black;
+}
+
 @media screen and (max-width: 920px){
     body{
         font-size: 2vw;

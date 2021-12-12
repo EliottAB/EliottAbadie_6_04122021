@@ -13,8 +13,7 @@ async function displayPhotographer(photographers) {
 
         const photographerImg = photographerHeader.appendChild(document.createElement("img"))
         photographerImg.setAttribute("src", "/assets/photographers/" + photographer.portrait)
-        photographerImg.setAttribute("alt", "ok")
-
+        photographerImg.setAttribute("alt", "Portrait de " + photographer.name)
     }
     });
 };
