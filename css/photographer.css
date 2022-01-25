@@ -69,7 +69,7 @@
     cursor: pointer;
 }
 
-.modal header h2 {
+.modal header h2{
     font-size: 4em;
     font-weight: normal;
     text-align: center;
@@ -102,6 +102,118 @@ form input {
     border-radius: .3em;
 }
 
+.filtres{
+    position: relative;
+    display: flex;
+    margin: 0 3.25em;
+}
+
+.filtres p{
+    margin: 2em;
+    font-size: 1.2em;
+}
+
+.filtres li:nth-child(1){
+    border-bottom: none;
+    z-index: 1;
+}
+
+.filtres li:nth-child(2){
+    transform: translate(0, -3.5em);
+    border-bottom: .05em solid white;
+}
+
+.filtres li:nth-child(3){
+    transform: translate(0, -7em);
+}
+
+.filtres ul{
+    position: absolute;
+    left: 10em;
+    padding: .5em 1em;
+    height: 3em;
+    width: 8em;
+    border-radius: .4em;
+    background-color: #901C1C;
+}
+
+
+.filtres li{
+    position: relative;
+    padding: 1em .7em;
+    list-style: none;
+    color: white;
+    background-color: #901C1C;
+    cursor: pointer;
+    user-select: none;
+}
+
+.filtres i{
+    position: absolute;
+    font-size: 1.3em;
+    color: white;
+    top: 1.2em;
+    right: 1em;
+    z-index: 1;
+    transform: rotate(180deg);
+    transition: transform .4s;
+    cursor: pointer;
+}
+
+.photographies{
+    padding: 0 5%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 3em 7%;
+}
+
+.photographies div{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #901C1C;
+    font-size: 1.3em;
+}
+
+.photographies p{
+    position: relative;
+    top: .35em;
+    display: flex;
+    align-items: center;
+    align-self: flex-start;
+    margin-left: 1em;
+}
+
+.photographies i{
+    margin-left: .3em;
+    cursor: pointer;
+}
+
+.photographies img, .photographies video{
+    width: 100%;
+    height: 30vw;
+    object-fit: cover;
+}
+
+.fixedinfos{
+    position: fixed;
+    bottom: 0;
+    right: 3vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 13em;
+    height: 3em;
+    padding: 0 3em;
+    font-size: 1.5em;
+    background-color: #DB8876;
+    border-radius: .3em .3em 0 0;
+}
+
+.fixedinfos i{
+    margin-left: .5em;
+}
+
 @media screen and (max-width: 920px){
     .photograph-header{
         font-size: 1.2em;
@@ -111,5 +223,9 @@ form input {
     
     .photographer_section{
         text-align: center;
+    }
+
+    .photographies div{
+        font-size: 1.1em;
     }
 }

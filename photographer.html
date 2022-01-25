@@ -1,36 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <link href="css/photographer.css" rel="stylesheet">
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/f6bb865750.js" crossorigin="anonymous"></script>
     <title>Fisheye - photographe </title>
   </head>
   <body>
     <header>
-      <a href="index.html"><img src="assets/images/logo.png" class="logo"/></a>
+      <a href="index.html"><img src="assets/images/logo.png" alt="logo FishEye" class="logo"/></a>
     </header>
     <main id="main">
       <header class="photograph-header">
         <section class="photographer_section"></section>
         <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
       </header>
-    </main>
-    <div id="contact_modal">
-			<div class="modal">
-				<header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
-        </header>
-				<form>
-					<div>
-						<label>Prénom</label>
-						<input/>
-					</div>
-          <button class="contact_button">Envoyer</button>
-				</form>
+      <div id="contact_modal">
+        <div class="modal">
+          <header>
+            <h2>Contactez-moi</h2>
+            <img src="assets/icons/close.svg" alt="croix" onclick="closeModal()" />
+          </header>
+          <form>
+            <div>
+              <label>Prénom</label>
+              <input/>
+            </div>
+            <button class="contact_button">Envoyer</button>
+          </form>
+        </div>
+      </div>
+        <div class="filtres">
+          <p>Trier par</p>
+          <ul>
+            <li>Popularité</li>
+            <li>Date</li>
+            <li>Titre</li>
+            <i class="fas fa-angle-up"></i>
+          </ul>
+        </div>
+        <section class="photographies"></section>
+        <div class="fixedinfos"></div>
+      </main>
 			</div>
 		</div>
     <script src="/scripts/utils/contactForm.js"></script>
