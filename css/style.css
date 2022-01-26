@@ -12,7 +12,7 @@ header{
     height: 5.60em;
 }
 
-header h1{
+body>header h1{
     color: #901C1C;
 }
 

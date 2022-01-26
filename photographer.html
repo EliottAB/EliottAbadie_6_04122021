@@ -21,32 +21,42 @@
       <div id="contact_modal">
         <div class="modal">
           <header>
-            <h2>Contactez-moi</h2>
+            <h1>Contactez-moi</h1>
             <img src="assets/icons/close.svg" alt="croix" onclick="closeModal()" />
           </header>
-          <form>
+          <form method="post">
             <div>
-              <label>Prénom</label>
-              <input/>
+              <label for="firstname">Prénom</label>
+              <input id="firstname" type="text">
+              <label for="lastname">Nom</label>
+              <input id="lastname" type="text">
+              <label for="email">Email</label>
+              <input id="email" type="email">
+              <label for="message">Message</label>
+              <textarea id="message" rows="6"></textarea>
             </div>
-            <button class="contact_button">Envoyer</button>
+            <button class="contact_button" onclick="logFormContent()">Envoyer</button>
           </form>
         </div>
       </div>
-        <div class="filtres">
-          <p>Trier par</p>
-          <ul>
-            <li>Popularité</li>
-            <li>Date</li>
-            <li>Titre</li>
-            <i class="fas fa-angle-up"></i>
-          </ul>
-        </div>
-        <section class="photographies"></section>
-        <div class="fixedinfos"></div>
-      </main>
-			</div>
-		</div>
+      <div class="filtres">
+        <p>Trier par</p>
+        <ul>
+          <li>Popularité</li>
+          <li>Date</li>
+          <li>Titre</li>
+          <i class="fas fa-angle-up"></i>
+        </ul>
+      </div>
+      <section class="photographies"></section>
+      <div class="fixedinfos"></div>
+    </main>
+    <div class="lightbox">
+      <i class="fas fa-times croix" onclick="launchLightbox('', '', false)"></i>
+      <i class="fas fa-angle-up prevrow" onclick="swipePhoto(1)" aria-hidden="true"></i>
+      <div class="mediabox"></div>
+      <i class="fas fa-angle-up nextrow" onclick="swipePhoto(-1)" aria-hidden="true"></i>
+    </div>
     <script src="/scripts/utils/contactForm.js"></script>
     <script src="/scripts/pages/photographer.js"></script>
     <script src="/scripts/factories/photographer.js"></script>

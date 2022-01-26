@@ -39,6 +39,10 @@ async function getPhotographers() {
             plocation.textContent = city + ", " + country;
             ptagline.textContent = tagline;
             pprice.textContent = price + "€/jour";
+
+            plocation.tabIndex = "0"
+            ptagline.tabIndex = "0"
+            pprice.tabIndex = "0"
             
             plocation.classList.add("location")
             ptagline.classList.add("tagline")
@@ -46,6 +50,7 @@ async function getPhotographers() {
             
             if(page == "home"){
                 const h2 = document.createElement( 'h2' );
+                h2.tabIndex = "0"
                 h2.textContent = name;
                 article.appendChild(h2);
                 article.appendChild(a);
@@ -73,6 +78,7 @@ async function getPhotographers() {
                     let button = section.appendChild(document.createElement("button"))
                 button.innerHTML = categories[x]
                 button.classList.add("categorie")
+                button.tabIndex = "-1"
                 buttonEvent(button)
                 }
                 if(headtaged == false){
@@ -108,6 +114,8 @@ async function getPhotographers() {
             }
         });
     }
+
+    //au click d'un tag, applique les criteres et actionne les tags.
     function buttonEvent(button){
         button.addEventListener('click', function(){
                         
