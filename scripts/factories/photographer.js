@@ -58,6 +58,7 @@ async function getPhotographers() {
                 a.appendChild(img);
             }else{
                 const h1 = document.createElement( 'h1' );
+                h1.tabIndex = "0"
                 h1.textContent = name;
                 article.appendChild(h1);
             }

@@ -3,12 +3,12 @@ let id = urlParameters.get("id")
 document.querySelector(".modal form").action = location.href
 const photographersSection = document.querySelector(".photographer_section");
 const photographerHeader = document.querySelector(".photograph-header")
-const filterlist = document.querySelector(".filtres ul")
-const filterrow = document.querySelector(".filtres i")
-const filter = document.querySelectorAll(".filtres li")
-const firstfilter = document.querySelector(".filtres li:nth-child(1)")
-const secondfilter = document.querySelector(".filtres li:nth-child(2)")
-const thirdfilter = document.querySelector(".filtres li:nth-child(3)")
+const filterlist = document.querySelector(".listtri")
+const filterrow = document.querySelector(".trirow")
+const filter = document.querySelectorAll(".tributton")
+const firstfilter = document.querySelector(".tributton.first")
+const secondfilter = document.querySelector(".tributton.second")
+const thirdfilter = document.querySelector(".tributton.third")
 const photographies = document.querySelector(".photographies")
 const fixedinfos = document.querySelector(".fixedinfos")
 const lightbox = document.querySelector(".lightbox")
@@ -53,6 +53,7 @@ async function displayPhotographer(photographers) {
                     }else{
                         let photo = document.createElement("img")
                         photo.src = "/assets/images/photos/" + media.image
+                        photo.alt = media.title
                         photo.addEventListener("click", () =>{
                             launchLightbox("initial", "0", true)
                             displayMedia("img",photo.src, photo.parentElement)
@@ -116,33 +117,22 @@ async function init() {
 };
 
 //au click de la liste, ferme ou ouvre, et réaffiche les bouttons de tri.
-filterlist.addEventListener("click", function(){
-    if(filterlist.opened == true){
-        showHideFilterList("", "", "", "", "", false)
-        setTimeout(() => {
-            filterlist.style.transition = ""
-            secondfilter.style.transition = ""
-            thirdfilter.style.transition = ""
-        }, 400);
-    }else{
-        if(firstfilter.innerHTML.includes("Date")){
-            secondfilter.innerHTML = "Popularité"
-            thirdfilter.innerHTML = "Titre"
+    filterlist.addEventListener("click", function(){
+        if(filterlist.opened == true){
+            showHideFilterList("", "", "", "", "", false)
+            setTimeout(() => {
+                filterlist.style.transition = ""
+                secondfilter.style.transition = ""
+                thirdfilter.style.transition = ""
+            }, 400);
+            triButtonTabIndex("-1")
+        }else{
+            triButtonTabIndex("0")
+            replaceFilters()
+            setTimeout(showHideFilterList("rotate(0deg)", ".05em solid white", "translate(0, 0)", "translate(0, 0)", "11em", true), 0);
+
         }
-        if(firstfilter.innerHTML.includes("Popularité")){
-            secondfilter.innerHTML = "Date"
-            thirdfilter.innerHTML = "Titre"
-        }
-        if(firstfilter.innerHTML.includes("Titre")){
-            secondfilter.innerHTML = "Popularité"
-            thirdfilter.innerHTML = "Date"
-        }
-        filterlist.style.transition = "height .4s"
-        secondfilter.style.transition = "transform .4s"
-            thirdfilter.style.transition = "transform .4s"
-        setTimeout(showHideFilterList("rotate(0deg)", ".05em solid white", "translate(0, 0)", "translate(0, 0)", "10em", true), 0);
-    }
-})
+    })
 
 //au click d'un filtre, enleve les transitions(evite les transitions au windows resize), et tri.
 filter.forEach((element) =>{
@@ -155,7 +145,11 @@ filter.forEach((element) =>{
                 secondfilter.style.transition = ""
                 thirdfilter.style.transition = ""
             }, 400);
-            filterlist.opened = false
+            triButtonTabIndex("-1")
+        }else{
+            triButtonTabIndex("0")
+            replaceFilters()
+            setTimeout(showHideFilterList("rotate(0deg)", ".05em solid white", "translate(0, 0)", "translate(0, 0)", "11em", true), 0);
         }
         firstfilter.innerHTML = element.innerHTML
         if(element.innerHTML == "Titre"){
@@ -176,6 +170,12 @@ filter.forEach((element) =>{
         })
 })
 
+function triButtonTabIndex(tabindex){
+    filter.forEach(element => {
+        element.tabIndex = tabindex
+    });
+}
+
 
 //ouvre ou ferme le volet de tri
 function showHideFilterList(rowRotation, filterOneBorder, filterTwoTrans, filterThreeTrans, filterListHeight, invert){
@@ -186,6 +186,25 @@ function showHideFilterList(rowRotation, filterOneBorder, filterTwoTrans, filter
     filterlist.style.height = filterListHeight
     filterlist.opened = invert
 }
+
+//replace le nom des filtres et debug les transitions
+function replaceFilters(){
+    if(firstfilter.innerHTML.includes("Date")){
+        secondfilter.innerHTML = "Popularité"
+        thirdfilter.innerHTML = "Titre"
+    }
+    if(firstfilter.innerHTML.includes("Popularité")){
+        secondfilter.innerHTML = "Date"
+        thirdfilter.innerHTML = "Titre"
+    }
+    if(firstfilter.innerHTML.includes("Titre")){
+        secondfilter.innerHTML = "Popularité"
+        thirdfilter.innerHTML = "Date"
+    }
+    filterlist.style.transition = "height .4s"
+    secondfilter.style.transition = "transform .4s"
+    thirdfilter.style.transition = "transform .4s"
+    }
 
 //tri les medias, puis les affiches triés
 function tri(filtre, domcompare, article){
@@ -212,6 +231,9 @@ function tri(filtre, domcompare, article){
             }
         }
         isOrderTaken()
+        article.querySelectorAll("h3, p, video, img").forEach(element => {
+            element.tabIndex = article.order + ""
+        });
         allorders.push(article.order)
     });
     allorders = []

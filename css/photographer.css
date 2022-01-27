@@ -74,9 +74,14 @@ main{
     width: 100%;
 }
 
-.modal header img {
+.closemodal{
+    position: absolute;
+    top: 3em;
+    right: 3em;
     width: 4em;
     cursor: pointer;
+    background-color: initial;
+    border: none;
 }
 
 .modal header h1{
@@ -124,58 +129,76 @@ form textarea{
     position: relative;
     display: flex;
     margin: 0 3.25em;
+    width: 10em;
 }
 
-.filtres p{
+.filtres div{
+    position: absolute;
+    left: 8.8em;
+    top: 1.5em;
+    z-index: 1;
+}
+
+.filtres label{
     margin: 2em;
     font-size: 1.2em;
 }
 
-.filtres li:nth-child(1){
+.filtres .tributton.first{
     border-bottom: none;
     z-index: 1;
+    width: 8.02em;
 }
 
-.filtres li:nth-child(2){
-    transform: translate(0, -3.5em);
+.filtres .tributton.second{
+    transform: translate(0, -3.2em);
     border-bottom: .05em solid white;
 }
 
-.filtres li:nth-child(3){
-    transform: translate(0, -7em);
+.filtres .tributton.third{
+    transform: translate(0, -6.35em);
 }
 
-.filtres ul{
+.listtri{
     position: absolute;
-    left: 10em;
+    left: 9.64em;
+    top: 1em;
     padding: .5em 1em;
-    height: 3em;
-    width: 8em;
+    height: 5em;
+    width: 10em;
     border-radius: .4em;
     background-color: #901C1C;
+    color: transparent;
+    border: none;
 }
 
 
-.filtres li{
+.tributton{
     position: relative;
     padding: 1em .7em;
     list-style: none;
     color: white;
+    width: 8em;
     background-color: #901C1C;
+    text-align: start;
     cursor: pointer;
     user-select: none;
+    border: none;
 }
 
-.filtres i{
+.trirow{
     position: absolute;
+    top: .52em;
+    right: .2em;
+    background-color: #901C1C;
+    border: none;
+    z-index: 1;
     font-size: 1.3em;
     color: white;
-    top: 1.2em;
-    right: 1em;
-    z-index: 1;
     transform: rotate(180deg);
     transition: transform .4s;
     cursor: pointer;
+    pointer-events: none;
 }
 
 .photographies{

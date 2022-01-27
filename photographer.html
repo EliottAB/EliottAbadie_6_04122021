@@ -4,6 +4,7 @@
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <link href="css/photographer.css" rel="stylesheet">
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/f6bb865750.js" crossorigin="anonymous"></script>
@@ -22,7 +23,6 @@
         <div class="modal">
           <header>
             <h1>Contactez-moi</h1>
-            <img src="assets/icons/close.svg" alt="croix" onclick="closeModal()" />
           </header>
           <form method="post">
             <div>
@@ -36,17 +36,19 @@
               <textarea id="message" rows="6"></textarea>
             </div>
             <button class="contact_button" onclick="logFormContent()">Envoyer</button>
+            <button type="button" onclick="closeModal()" class="closemodal" tabindex="0"><img src="assets/icons/close.svg" alt="croix"/></button>
           </form>
         </div>
       </div>
       <div class="filtres">
-        <p>Trier par</p>
-        <ul>
-          <li>Popularité</li>
-          <li>Date</li>
-          <li>Titre</li>
-          <i class="fas fa-angle-up"></i>
-        </ul>
+        <label tabindex="-1" for="listtri">Trier par</label>
+        <button role="listbox" class="listtri" id="listtri" tabindex="0">Filtres</button>
+        <div>
+          <button class="tributton first" tabindex="-1">Popularité</button>
+          <button class="tributton second" tabindex="-1">Date</button>
+          <button class="tributton third" tabindex="-1">Titre</button>
+          <i class="fas fa-angle-up trirow" tabindex="-1"></i>
+        </div>
       </div>
       <section class="photographies"></section>
       <div class="fixedinfos"></div>
