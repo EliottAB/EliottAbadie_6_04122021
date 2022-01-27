@@ -2,7 +2,7 @@
 let data = []
 let criteres = []
 let headtaged = false
-fetch("photographers.json")
+fetch("data/photographers.json")
 .then((res) => {
     const promesse = res.json();
     return promesse

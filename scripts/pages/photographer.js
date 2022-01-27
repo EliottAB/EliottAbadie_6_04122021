@@ -32,7 +32,7 @@ async function displayPhotographer(photographers) {
             photographersSection.appendChild(userSelfDOM);
             
             const photographerImg = photographerHeader.appendChild(document.createElement("img"))
-            photographerImg.setAttribute("src", "/assets/photographers/" + photographer.portrait)
+            photographerImg.setAttribute("src", "assets/photographers/" + photographer.portrait)
             photographerImg.setAttribute("alt", "Portrait de " + photographer.name)
 
             //affiche les medias du photographer
@@ -44,7 +44,7 @@ async function displayPhotographer(photographers) {
                     let hearts = document.createElement("p")
                     if(media.video){
                         let video = document.createElement("video")
-                        video.src = "/assets/images/photos/" + media.video
+                        video.src = "assets/images/photos/" + media.video
                         video.addEventListener("click", () =>{
                             launchLightbox("initial", "0", true)
                             displayMedia("video", video.src, video.parentElement)
@@ -52,7 +52,7 @@ async function displayPhotographer(photographers) {
                         publication.appendChild(video)
                     }else{
                         let photo = document.createElement("img")
-                        photo.src = "/assets/images/photos/" + media.image
+                        photo.src = "assets/images/photos/" + media.image
                         photo.alt = media.title
                         photo.addEventListener("click", () =>{
                             launchLightbox("initial", "0", true)
