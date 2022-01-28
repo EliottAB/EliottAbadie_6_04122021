@@ -42,23 +42,23 @@
       </div>
       <div class="filtres">
         <label tabindex="-1" for="listtri">Trier par</label>
-        <button role="listbox" class="listtri" id="listtri" tabindex="0">Filtres</button>
-        <div>
-          <button class="tributton first" tabindex="-1">Popularité</button>
-          <button class="tributton second" tabindex="-1">Date</button>
-          <button class="tributton third" tabindex="-1">Titre</button>
-          <i class="fas fa-angle-up trirow" tabindex="-1"></i>
-        </div>
+        <i class="fas fa-angle-up trirow" tabindex="-1"></i>
+        <button class="listtri" id="listtri" aria-label="Filtres" aria-activedescendant="listbox1-1" tabindex="0">Popularité</button>
+        <ul role="listbox" aria-expanded="false">
+          <li><button role="option" class="tributton first" id="listbox1-1" tabindex="-1">Popularité</button></li>
+          <li><button role="option" class="tributton second" tabindex="-1">Date</button></li>
+          <li><button role="option" class="tributton third" tabindex="-1">Titre</button></li>
+        </ul>
       </div>
       <section class="photographies"></section>
       <div class="fixedinfos"></div>
+      <div class="lightbox">
+        <img src="assets/icons/rowleft.png" class="fas fa-angle-up prevrow" tabindex="0" onclick="swipePhoto(1)"></img>
+        <div class="mediabox"></div>
+        <img src="assets/icons/rowleft.png" class="fas fa-angle-up nextrow" tabindex="0" onclick="swipePhoto(-1)"></img>
+        <img src="assets/icons/redx.png" class="fas fa-times croix" tabindex="0" onclick="launchLightbox('', '', false)"></img>
+      </div>
     </main>
-    <div class="lightbox">
-      <i class="fas fa-times croix" onclick="launchLightbox('', '', false)"></i>
-      <i class="fas fa-angle-up prevrow" onclick="swipePhoto(1)" aria-hidden="true"></i>
-      <div class="mediabox"></div>
-      <i class="fas fa-angle-up nextrow" onclick="swipePhoto(-1)" aria-hidden="true"></i>
-    </div>
     <script src="scripts/pages/index.js"></script>
     <script src="scripts/utils/contactForm.js"></script>
     <script src="scripts/pages/photographer.js"></script>

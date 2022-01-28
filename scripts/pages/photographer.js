@@ -46,18 +46,32 @@ async function displayPhotographer(photographers) {
                         let video = document.createElement("video")
                         video.src = "assets/images/photos/" + media.video
                         video.addEventListener("click", () =>{
-                            launchLightbox("initial", "0", true)
+                            launchLightbox("initial", "none", true)
                             displayMedia("video", video.src, video.parentElement)
                         })
+                        video.addEventListener("keydown", (e) =>{
+                            if(e.key == " " || e.key == "Enter"){
+                                launchLightbox("initial", "none", true)
+                                displayMedia("video", video.src, video.parentElement)
+                            }
+                        })
+                        video.role = "button"
                         publication.appendChild(video)
                     }else{
                         let photo = document.createElement("img")
                         photo.src = "assets/images/photos/" + media.image
                         photo.alt = media.title
                         photo.addEventListener("click", () =>{
-                            launchLightbox("initial", "0", true)
+                            launchLightbox("initial", "none", true)
                             displayMedia("img",photo.src, photo.parentElement)
                         })
+                        photo.addEventListener("keydown", (e) =>{
+                            if(e.key == " " || e.key == "Enter"){
+                                launchLightbox("initial", "none", true)
+                                displayMedia("img",photo.src, photo.parentElement)
+                            }
+                        })
+                        photo.role = "button"
                         publication.appendChild(photo)
                     }
                     totallikes += media.likes
@@ -119,39 +133,32 @@ async function init() {
 //au click de la liste, ferme ou ouvre, et réaffiche les bouttons de tri.
     filterlist.addEventListener("click", function(){
         if(filterlist.opened == true){
-            showHideFilterList("", "", "", "", "", false)
-            setTimeout(() => {
-                filterlist.style.transition = ""
-                secondfilter.style.transition = ""
-                thirdfilter.style.transition = ""
-            }, 400);
+            showHideFilterList("", "", false, "")
             triButtonTabIndex("-1")
+            filterlist.ariaExpanded = "false"
         }else{
+            showHideFilterList("rotate(0deg)", "11em", true, "initial")
             triButtonTabIndex("0")
             replaceFilters()
-            setTimeout(showHideFilterList("rotate(0deg)", ".05em solid white", "translate(0, 0)", "translate(0, 0)", "11em", true), 0);
-
+            filterlist.ariaExpanded = "true"
         }
     })
 
-//au click d'un filtre, enleve les transitions(evite les transitions au windows resize), et tri.
+//au click d'un filtre tri.
 filter.forEach((element) =>{
     element.addEventListener("click", function(e){
         if(filterlist.opened == true){
             e.stopPropagation()
-            showHideFilterList("", "", "", "", "", false)
-            setTimeout(() => {
-                filterlist.style.transition = ""
-                secondfilter.style.transition = ""
-                thirdfilter.style.transition = ""
-            }, 400);
+            showHideFilterList("", "", false, "",)
             triButtonTabIndex("-1")
+            filterlist.ariaExpanded = "false"
         }else{
             triButtonTabIndex("0")
+            showHideFilterList("rotate(0deg)", "11em", true, "initial")
             replaceFilters()
-            setTimeout(showHideFilterList("rotate(0deg)", ".05em solid white", "translate(0, 0)", "translate(0, 0)", "11em", true), 0);
+            filterlist.ariaExpanded = "true"
         }
-        firstfilter.innerHTML = element.innerHTML
+        filterlist.innerHTML = element.innerHTML
         if(element.innerHTML == "Titre"){
             document.querySelectorAll(".photographies article").forEach(article => {
                 tri(titles, article.querySelector("h3").innerHTML, article)
@@ -178,33 +185,31 @@ function triButtonTabIndex(tabindex){
 
 
 //ouvre ou ferme le volet de tri
-function showHideFilterList(rowRotation, filterOneBorder, filterTwoTrans, filterThreeTrans, filterListHeight, invert){
+function showHideFilterList(rowRotation, filterListHeight, invert, display){
     filterrow.style.transform = rowRotation
-    firstfilter.style.borderBottom = filterOneBorder
-    secondfilter.style.transform = filterTwoTrans
-    thirdfilter.style.transform = filterThreeTrans
+    document.querySelector(".filtres ul").style.display = display
     filterlist.style.height = filterListHeight
     filterlist.opened = invert
 }
 
-//replace le nom des filtres et debug les transitions
+//replace le nom des filtres
 function replaceFilters(){
-    if(firstfilter.innerHTML.includes("Date")){
+    if(filterlist.innerHTML.includes("Date")){
+        firstfilter.innerHTML = "Date"
         secondfilter.innerHTML = "Popularité"
         thirdfilter.innerHTML = "Titre"
     }
-    if(firstfilter.innerHTML.includes("Popularité")){
+    if(filterlist.innerHTML.includes("Popularité")){
+        firstfilter.innerHTML = "Popularité"
         secondfilter.innerHTML = "Date"
         thirdfilter.innerHTML = "Titre"
     }
-    if(firstfilter.innerHTML.includes("Titre")){
+    if(filterlist.innerHTML.includes("Titre")){
+        firstfilter.innerHTML = "Titre"
         secondfilter.innerHTML = "Popularité"
         thirdfilter.innerHTML = "Date"
     }
-    filterlist.style.transition = "height .4s"
-    secondfilter.style.transition = "transform .4s"
-    thirdfilter.style.transition = "transform .4s"
-    }
+}
 
 //tri les medias, puis les affiches triés
 function tri(filtre, domcompare, article){
@@ -239,9 +244,12 @@ function tri(filtre, domcompare, article){
     allorders = []
 }
 
-function launchLightbox(LBdisplay, mainHeight, opened){
+function launchLightbox(LBdisplay, maindisplay, opened){
+    document.querySelectorAll("main>*").forEach(element => {
+        element.style.display = maindisplay
+    });
+    document.querySelector("header").style.display = maindisplay
     lightbox.style.display = LBdisplay
-    main.style.height = mainHeight
     lightboxopened = opened
 }
 
@@ -286,12 +294,7 @@ window.addEventListener("keydown", (e) => {
         closeModal()
     }
     if(e.key == "Escape" && filterlist.opened == true){
-        showHideFilterList("", "", "", "", "", false)
-        setTimeout(() => {
-            filterlist.style.transition = ""
-            secondfilter.style.transition = ""
-            thirdfilter.style.transition = ""
-        }, 400);
+        showHideFilterList("", "", false, "")
         filterlist.opened = false
     }
     if(e.key == "ArrowRight" && lightboxopened == true){

@@ -129,14 +129,23 @@ form textarea{
     position: relative;
     display: flex;
     margin: 0 3.25em;
-    width: 10em;
+    width: 20em;
 }
 
-.filtres div{
+.filtres ul{
+    display: none;
     position: absolute;
-    left: 8.8em;
-    top: 1.5em;
+    left: 7.8em;
+    top: .7em;
+    width: 5em;
+    font-size: 1em;
+    padding: 0 0 0 1em;
     z-index: 1;
+}
+
+.filtres li{
+    list-style: none;
+    z-index: 5;
 }
 
 .filtres label{
@@ -145,31 +154,29 @@ form textarea{
 }
 
 .filtres .tributton.first{
-    border-bottom: none;
+    border-bottom: .05em solid white;
     z-index: 1;
     width: 8.02em;
 }
 
 .filtres .tributton.second{
-    transform: translate(0, -3.2em);
     border-bottom: .05em solid white;
-}
-
-.filtres .tributton.third{
-    transform: translate(0, -6.35em);
 }
 
 .listtri{
     position: absolute;
-    left: 9.64em;
-    top: 1em;
-    padding: .5em 1em;
+    left: 7.8em;
+    top: .7em;
+    padding: .2em 0 0 1.65em;
     height: 5em;
     width: 10em;
     border-radius: .4em;
+    text-align: start;
     background-color: #901C1C;
-    color: transparent;
+    color: white;
     border: none;
+    cursor: pointer;
+    font-size: 1em;
 }
 
 
@@ -179,6 +186,7 @@ form textarea{
     list-style: none;
     color: white;
     width: 8em;
+    font-size: 1em;
     background-color: #901C1C;
     text-align: start;
     cursor: pointer;
@@ -188,8 +196,8 @@ form textarea{
 
 .trirow{
     position: absolute;
-    top: .52em;
-    right: .2em;
+    top: 1.8em;
+    right: 2.8em;
     background-color: #901C1C;
     border: none;
     z-index: 1;
@@ -199,6 +207,7 @@ form textarea{
     transition: transform .4s;
     cursor: pointer;
     pointer-events: none;
+    z-index: 2;
 }
 
 .photographies{
@@ -268,37 +277,39 @@ form textarea{
 
 .lightbox .croix{
     position: fixed;
-    top: .8em;
-    right: 1.8em;
-    font-size: 4em;
+    top: 4em;
+    right: 4em;
+    width: 4em;
     color: #901C1C;
     cursor: pointer;
+    z-index: 2;
 }
 
 .lightbox .fa-angle-up{
     position: fixed;
     color: #901C1C;
-    font-size: 4.1em;
+    width: 4em;
     top: 50%;
     cursor: pointer;
+    z-index: 1;
 }
 
 .prevrow{
-    transform: translate(0, -50%) rotate(-90deg);
-    left: 15vw;
+    transform: translate(0, -50%);
+    left: 8vw;
 }
 
 .nextrow{
-    transform: translate(0, -50%) rotate(90deg);
-    right: 15vw;
+    transform: translate(0, -50%) rotate(180deg);
+    right: 8vw;
 }
 
 .mediabox{
     position: fixed;
     top: 50%;
     left: 50%;
-    width: 37vw;
-    height: 37vw;
+    max-width: 65vw;
+    height: 90vh;
     transform: translate(-50%, -50%);
 }
 
@@ -321,5 +332,10 @@ form textarea{
 
     .photographies div{
         font-size: 1.1em;
+    }
+
+    .mediabox{
+        width: 28em;
+        height: 35em;
     }
 }
