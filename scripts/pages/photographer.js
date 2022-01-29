@@ -157,7 +157,7 @@ async function init() {
             triButtonTabIndex("-1")
             filterscontainer.ariaExpanded = "false"
         }else{
-            showHideFilterList("rotate(0deg)", "11em", true, "initial")
+            showHideFilterList("rotate(90deg)", "11em", true, "initial")
             triButtonTabIndex("0")
             replaceFilters()
             filterscontainer.ariaExpanded = "true"
@@ -167,17 +167,10 @@ async function init() {
 //au click d'un filtre tri.
 filter.forEach((element) =>{
     element.addEventListener("click", function(e){
-        if(filterlist.opened == true){
-            e.stopPropagation()
-            showHideFilterList("", "", false, "",)
-            triButtonTabIndex("-1")
-            filterscontainer.ariaExpanded = "false"
-        }else{
-            triButtonTabIndex("0")
-            showHideFilterList("rotate(0deg)", "11em", true, "initial")
-            replaceFilters()
-            filterscontainer.ariaExpanded = "true"
-        }
+        e.stopPropagation()
+        showHideFilterList("", "", false, "",)
+        triButtonTabIndex("-1")
+        filterscontainer.ariaExpanded = "false"
         filterlist.innerHTML = element.innerHTML
         if(element.innerHTML == "Titre"){
             document.querySelectorAll(".photographies article").forEach(article => {

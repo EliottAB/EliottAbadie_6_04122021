@@ -196,14 +196,14 @@ form textarea{
 
 .trirow{
     position: absolute;
-    top: 2em;
-    right: 2.8em;
+    top: 2.5em;
+    right: 3.5em;
     background-color: #901C1C;
     border: none;
     z-index: 1;
-    font-size: 1.3em;
+    width: 1em;
     color: white;
-    transform: rotate(180deg);
+    transform: rotate(-90deg);
     cursor: pointer;
     pointer-events: none;
     z-index: 2;
@@ -260,6 +260,7 @@ form textarea{
     font-size: 1.5em;
     background-color: #DB8876;
     border-radius: .3em .3em 0 0;
+    z-index: 2;
 }
 
 .fixedinfos img{
