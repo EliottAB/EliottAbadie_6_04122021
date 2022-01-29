@@ -11,7 +11,7 @@
   </head>
   <body>
     <header>
-      <a href="index.html"><img src="assets/images/logo.png" alt="logo FishEye" class="logo"/></a>
+      <a href="index.html"><img src="assets/images/logo.png" alt="logo FishEye" class="logo"></a>
     </header>
     <main id="main">
       <header class="photograph-header">
@@ -35,13 +35,13 @@
               <textarea id="message" rows="6"></textarea>
             </div>
             <button class="contact_button" onclick="logFormContent()">Envoyer</button>
-            <button type="button" onclick="closeModal()" class="closemodal" tabindex="0"><img src="assets/icons/close.svg" alt="croix"/></button>
+            <button type="button" onclick="closeModal()" class="closemodal" tabindex="0"><img src="assets/icons/close.svg" alt="croix"></button>
           </form>
         </div>
       </div>
       <div class="filtres">
         <label tabindex="-1" for="listtri">Trier par</label>
-        <img class="trirow" src="assets/icons/rowwhite.png" tabindex="-1"></img>
+        <img class="trirow" src="assets/icons/rowwhite.png" tabindex="-1">
         <button class="listtri" id="listtri" tabindex="0">Popularité</button>
         <ul role="listbox" aria-expanded="false">
           <li><button role="option" class="tributton first" tabindex="-1">Popularité</button></li>
@@ -52,10 +52,10 @@
       <section class="photographies"></section>
       <div class="fixedinfos"></div>
       <div class="lightbox">
-        <img src="assets/icons/rowleft.png" alt="row left" class="fas fa-angle-up prevrow" tabindex="0" role="button" aria-label="preview" onclick="swipePhoto(1)"></img>
+        <img src="assets/icons/rowleft.png" alt="row left" class="fas fa-angle-up prevrow" tabindex="0" role="button" aria-label="preview" onclick="swipePhoto(1)">
         <div class="mediabox"></div>
-        <img src="assets/icons/rowleft.png" alt="row right" class="fas fa-angle-up nextrow" tabindex="0" role="button" aria-label="next" onclick="swipePhoto(-1)"></img>
-        <img src="assets/icons/redx.png" alt="cross" class="fas fa-times croix" tabindex="0" role="button" aria-label="close" onclick="launchLightbox('', '', false)"></img>
+        <img src="assets/icons/rowleft.png" alt="row right" class="fas fa-angle-up nextrow" tabindex="0" role="button" aria-label="next" onclick="swipePhoto(-1)">
+        <img src="assets/icons/redx.png" alt="cross" class="fas fa-times croix" tabindex="0" role="button" aria-label="close" onclick="launchLightbox('', '', false)">
       </div>
     </main>
     <script src="scripts/pages/index.js"></script>

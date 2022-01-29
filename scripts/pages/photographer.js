@@ -82,7 +82,7 @@ async function displayPhotographer(photographers) {
                     }
                     totallikes += media.likes
                     title.innerHTML = media.title
-                    hearts.innerHTML = media.likes + '<img src="assets/icons/redheart.png" class="redheart" alt="redheart"></img>'
+                    hearts.innerHTML = media.likes + '<img src="assets/icons/redheart.png" class="redheart" alt="redheart">'
                     hearts.photoid = media.id
                     hearts.setAttribute("role", "button")
                     hearts.setAttribute("aria-label", media.likes + "likes")
@@ -104,14 +104,14 @@ async function displayPhotographer(photographers) {
             })
             let fixedlikes = document.createElement("p")
             let fixedprice = document.createElement("p")
-            fixedlikes.innerHTML = totallikes + '<img src="assets/icons/blackheart.png" alt="blackheart"></img>'
+            fixedlikes.innerHTML = totallikes + '<img src="assets/icons/blackheart.png" alt="blackheart">'
             fixedlikes.classList.add("fixedlikes")
             fixedprice.innerHTML = photographer.price + "€ /jour"
             fixedinfos.appendChild(fixedlikes)
             fixedinfos.appendChild(fixedprice)
 
             document.querySelectorAll(".photographies article").forEach(article => {
-                tri(likes, parseInt(article.querySelector("p").innerHTML.replace('<img src="assets/icons/redheart.png" class="redheart" alt="redheart"></img>', "")), article)
+                tri(likes, parseInt(article.querySelector("p").innerHTML.replace('<img src="assets/icons/redheart.png" class="redheart" alt="redheart">', "")), article)
             });
 
             //click sur le boutton like, ajoute ou retire 1
@@ -135,13 +135,13 @@ async function displayPhotographer(photographers) {
 
 function heartchange(element){
     if(element.likes == element.innerText){
-        element.innerHTML = parseInt(element.innerHTML) + 1 + '<img src="assets/icons/redheart.png" class="redheart" alt="redheart"></img>'
+        element.innerHTML = parseInt(element.innerHTML) + 1 + '<img src="assets/icons/redheart.png" class="redheart" alt="redheart">'
         totallikes += 1
     }else{
-        element.innerHTML = parseInt(element.innerHTML) - 1 + '<img src="assets/icons/redheart.png" class="redheart" alt="redheart"></img>'
+        element.innerHTML = parseInt(element.innerHTML) - 1 + '<img src="assets/icons/redheart.png" class="redheart" alt="redheart">'
         totallikes -= 1
     }
-    document.querySelector(".fixedlikes").innerHTML = totallikes + '<img src="assets/icons/blackheart.png" alt="blackheart"></img>'
+    document.querySelector(".fixedlikes").innerHTML = totallikes + '<img src="assets/icons/blackheart.png" alt="blackheart">'
 }
 
 async function init() {
@@ -179,7 +179,7 @@ filter.forEach((element) =>{
         }
         if(element.innerHTML == "Popularité"){
             document.querySelectorAll(".photographies article").forEach(article => {       
-                tri(likes, parseInt(article.querySelector("p").innerHTML.replace('<img src="assets/icons/redheart.png" class="redheart" alt="redheart"></img>', "")), article)
+                tri(likes, parseInt(article.querySelector("p").innerHTML.replace('<img src="assets/icons/redheart.png" class="redheart" alt="redheart">', "")), article)
             });
         }
         if(element.innerHTML == "Date"){
