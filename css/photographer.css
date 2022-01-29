@@ -196,7 +196,7 @@ form textarea{
 
 .trirow{
     position: absolute;
-    top: 1.8em;
+    top: 2em;
     right: 2.8em;
     background-color: #901C1C;
     border: none;
@@ -204,7 +204,6 @@ form textarea{
     font-size: 1.3em;
     color: white;
     transform: rotate(180deg);
-    transition: transform .4s;
     cursor: pointer;
     pointer-events: none;
     z-index: 2;
@@ -234,9 +233,12 @@ form textarea{
     margin-left: 1em;
 }
 
-.photographies i{
+.photographies .redheart{
     margin-left: .3em;
     cursor: pointer;
+    object-fit: cover;
+    width: 1.2em;
+    height: 1em;
 }
 
 .photographies img, .photographies video{
@@ -260,8 +262,9 @@ form textarea{
     border-radius: .3em .3em 0 0;
 }
 
-.fixedinfos i{
-    margin-left: .5em;
+.fixedinfos img{
+    margin-left: .2em;
+    width: 1.1em;
 }
 
 .lightbox{

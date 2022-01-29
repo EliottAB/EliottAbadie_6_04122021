@@ -4,6 +4,7 @@ document.querySelector(".modal form").action = location.href
 const photographersSection = document.querySelector(".photographer_section");
 const photographerHeader = document.querySelector(".photograph-header")
 const filterlist = document.querySelector(".listtri")
+const filterscontainer = document.querySelector(".filtres ul")
 const filterrow = document.querySelector(".trirow")
 const filter = document.querySelectorAll(".tributton")
 const firstfilter = document.querySelector(".tributton.first")
@@ -13,6 +14,9 @@ const photographies = document.querySelector(".photographies")
 const fixedinfos = document.querySelector(".fixedinfos")
 const lightbox = document.querySelector(".lightbox")
 const mediabox = document.querySelector(".mediabox")
+const LBarrowleft = document.querySelector(".prevrow")
+const LBarrowright = document.querySelector(".nextrow")
+const LBclose = document.querySelector(".lightbox .croix")
 const main = document.querySelector("main")
 let lightboxopened = false
 let likes = []
@@ -45,6 +49,7 @@ async function displayPhotographer(photographers) {
                     if(media.video){
                         let video = document.createElement("video")
                         video.src = "assets/images/photos/" + media.video
+                        video.classList.add("displayedmedia")
                         video.addEventListener("click", () =>{
                             launchLightbox("initial", "none", true)
                             displayMedia("video", video.src, video.parentElement)
@@ -60,6 +65,7 @@ async function displayPhotographer(photographers) {
                     }else{
                         let photo = document.createElement("img")
                         photo.src = "assets/images/photos/" + media.image
+                        photo.classList.add("displayedmedia")
                         photo.alt = media.title
                         photo.addEventListener("click", () =>{
                             launchLightbox("initial", "none", true)
@@ -76,8 +82,10 @@ async function displayPhotographer(photographers) {
                     }
                     totallikes += media.likes
                     title.innerHTML = media.title
-                    hearts.innerHTML = media.likes + '<i class="fas fa-heart"></i>'
+                    hearts.innerHTML = media.likes + '<img src="assets/icons/redheart.png" class="redheart" alt="redheart"></img>'
                     hearts.photoid = media.id
+                    hearts.setAttribute("role", "button")
+                    hearts.setAttribute("aria-label", media.likes + "likes")
                     hearts.classList.add("publicationhearts")
                     publication.date = media.date
                     likes.push(media.likes)
@@ -96,33 +104,45 @@ async function displayPhotographer(photographers) {
             })
             let fixedlikes = document.createElement("p")
             let fixedprice = document.createElement("p")
-            fixedlikes.innerHTML = totallikes + '<i class="fas fa-heart"></i>'
+            fixedlikes.innerHTML = totallikes + '<img src="assets/icons/blackheart.png" alt="blackheart"></img>'
             fixedlikes.classList.add("fixedlikes")
             fixedprice.innerHTML = photographer.price + "€ /jour"
             fixedinfos.appendChild(fixedlikes)
             fixedinfos.appendChild(fixedprice)
 
             document.querySelectorAll(".photographies article").forEach(article => {
-                tri(likes, parseInt(article.querySelector("p").innerHTML.replace('<i class="fas fa-heart"></i>', "")), article)
+                tri(likes, parseInt(article.querySelector("p").innerHTML.replace('<img src="assets/icons/redheart.png" class="redheart" alt="redheart"></img>', "")), article)
             });
 
             //click sur le boutton like, ajoute ou retire 1
             document.querySelectorAll(".publicationhearts").forEach(element => {
                 element.addEventListener("click", () => {
-                    if(element.likes == element.innerText){
-                        element.innerHTML = parseInt(element.innerHTML) + 1 + '<i class="fas fa-heart" aria-hidden="true"></i>'
-                        totallikes += 1
-                    }else{
-                        element.innerHTML = parseInt(element.innerHTML) - 1 + '<i class="fas fa-heart" aria-hidden="true"></i>'
-                        totallikes -= 1
-                    }
-                    document.querySelector(".fixedlikes").innerHTML = totallikes + '<i class="fas fa-heart" aria-hidden="true"></i>'
+                    heartchange(element)
                 })
             })
+        
+            document.querySelectorAll(".publicationhearts").forEach(element => {
+                element.addEventListener("keydown", (e) => {
+                    if(e.key == " " || e.key == "Enter"){
+                        heartchange(element)
+                    }
+                })
+            });
         }
     });
 
 };
+
+function heartchange(element){
+    if(element.likes == element.innerText){
+        element.innerHTML = parseInt(element.innerHTML) + 1 + '<img src="assets/icons/redheart.png" class="redheart" alt="redheart"></img>'
+        totallikes += 1
+    }else{
+        element.innerHTML = parseInt(element.innerHTML) - 1 + '<img src="assets/icons/redheart.png" class="redheart" alt="redheart"></img>'
+        totallikes -= 1
+    }
+    document.querySelector(".fixedlikes").innerHTML = totallikes + '<img src="assets/icons/blackheart.png" alt="blackheart"></img>'
+}
 
 async function init() {
     // Récupère les datas des photographes
@@ -135,12 +155,12 @@ async function init() {
         if(filterlist.opened == true){
             showHideFilterList("", "", false, "")
             triButtonTabIndex("-1")
-            filterlist.ariaExpanded = "false"
+            filterscontainer.ariaExpanded = "false"
         }else{
             showHideFilterList("rotate(0deg)", "11em", true, "initial")
             triButtonTabIndex("0")
             replaceFilters()
-            filterlist.ariaExpanded = "true"
+            filterscontainer.ariaExpanded = "true"
         }
     })
 
@@ -151,12 +171,12 @@ filter.forEach((element) =>{
             e.stopPropagation()
             showHideFilterList("", "", false, "",)
             triButtonTabIndex("-1")
-            filterlist.ariaExpanded = "false"
+            filterscontainer.ariaExpanded = "false"
         }else{
             triButtonTabIndex("0")
             showHideFilterList("rotate(0deg)", "11em", true, "initial")
             replaceFilters()
-            filterlist.ariaExpanded = "true"
+            filterscontainer.ariaExpanded = "true"
         }
         filterlist.innerHTML = element.innerHTML
         if(element.innerHTML == "Titre"){
@@ -166,7 +186,7 @@ filter.forEach((element) =>{
         }
         if(element.innerHTML == "Popularité"){
             document.querySelectorAll(".photographies article").forEach(article => {       
-                tri(likes, parseInt(article.querySelector("p").innerHTML.replace('<i class="fas fa-heart"></i>', "")), article)
+                tri(likes, parseInt(article.querySelector("p").innerHTML.replace('<img src="assets/icons/redheart.png" class="redheart" alt="redheart"></img>', "")), article)
             });
         }
         if(element.innerHTML == "Date"){
@@ -236,7 +256,7 @@ function tri(filtre, domcompare, article){
             }
         }
         isOrderTaken()
-        article.querySelectorAll("h3, p, video, img").forEach(element => {
+        article.querySelectorAll("p, video, .displayedmedia").forEach(element => {
             element.tabIndex = article.order + ""
         });
         allorders.push(article.order)
@@ -269,16 +289,35 @@ function swipePhoto(side){
     let found = false
     document.querySelectorAll(".photographies article").forEach(article => {
         if(copymedia.order - side == article.order && found == false){
-            if(article.querySelector("img")){
-                displayMedia("img", article.querySelector("img").src, article)
-
-            }else{
+            if(article.querySelector("video")){
                 displayMedia("video", article.querySelector("video").src, article)
+            }else{
+                if(article.querySelector(".displayedmedia")){
+                displayMedia("img", article.querySelector("img").src, article)
+                }
             }
             found = true
         }
     });
 }
+
+LBarrowleft.addEventListener("keydown", (e) => {
+    if(e.key == " " || e.key == "Enter"){
+        swipePhoto(1)
+    }
+})
+
+LBarrowright.addEventListener("keydown", (e) => {
+    if(e.key == " " || e.key == "Enter"){
+        swipePhoto(-1)
+    }
+})
+
+LBclose.addEventListener("keydown", (e) => {
+    if(e.key == " " || e.key == "Enter"){
+        launchLightbox('', '', false)
+    }
+})
 
 function logFormContent(){
     document.querySelectorAll(".modal input, .modal textarea").forEach(input => {
