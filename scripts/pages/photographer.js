@@ -157,7 +157,7 @@ async function init() {
             filterscontainer.ariaExpanded = "false"
         }else{
             showHideFilterList("rotate(90deg)", "11em", true, "initial")
-            triButtonTabIndex("0")
+            triButtonTabIndex("1")
             replaceFilters()
             filterscontainer.ariaExpanded = "true"
         }

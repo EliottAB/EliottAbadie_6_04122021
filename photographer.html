@@ -11,12 +11,12 @@
   </head>
   <body>
     <header>
-      <a href="index.html"><img src="assets/images/logo.png" alt="logo FishEye" class="logo"></a>
+      <a href="index.html" tabindex="1"><img src="assets/images/logo.png" alt="logo FishEye" class="logo"></a>
     </header>
     <main id="main">
       <header class="photograph-header">
         <section class="photographer_section"></section>
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+        <button class="contact_button" tabindex="1" onclick="displayModal()">Contactez-moi</button>
       </header>
       <div id="contact_modal">
         <div class="modal">
@@ -42,7 +42,7 @@
       <div class="filtres">
         <label tabindex="-1" for="listtri">Trier par</label>
         <img class="trirow" alt="row" src="assets/icons/rowwhite.png" tabindex="-1">
-        <button class="listtri" id="listtri" tabindex="0">Popularité</button>
+        <button class="listtri" id="listtri" tabindex="1">Popularité</button>
         <ul role="listbox" aria-expanded="false">
           <li><button role="option" class="tributton first" tabindex="-1">Popularité</button></li>
           <li><button role="option" class="tributton second" tabindex="-1">Date</button></li>

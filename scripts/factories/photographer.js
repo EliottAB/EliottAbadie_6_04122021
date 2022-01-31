@@ -16,7 +16,7 @@ fetch("data/photographers.json")
 
 async function getPhotographers() {
     // Penser à remplacer par les données récupérées dans le json
-    let photographers = data.photographers
+    photographers = data.photographers
     // et bien retourner le tableau photographers seulement une fois
     return ({
         photographers: [...photographers]})
@@ -40,10 +40,6 @@ async function getPhotographers() {
             plocation.textContent = city + ", " + country
             ptagline.textContent = tagline
             pprice.textContent = price + "€/jour"
-
-            plocation.tabIndex = "0"
-            ptagline.tabIndex = "0"
-            pprice.tabIndex = "0"
             
             plocation.classList.add("location")
             ptagline.classList.add("tagline")
@@ -57,11 +53,17 @@ async function getPhotographers() {
                 article.appendChild(a)
                 a.setAttribute("href", "./photographer.html?id="+ id)
                 a.appendChild(img)
+                plocation.tabIndex = "0"
+                ptagline.tabIndex = "0"
+                pprice.tabIndex = "0"
             }else{
                 const h1 = document.createElement( "h1" )
-                h1.tabIndex = "0"
+                h1.tabIndex = "1"
                 h1.textContent = name
                 article.appendChild(h1)
+                plocation.tabIndex = "1"
+                ptagline.tabIndex = "1"
+                pprice.tabIndex = "1"
             }
             
             article.appendChild(plocation)
@@ -107,12 +109,12 @@ async function getPhotographers() {
                 }
             }
             if(isInCriteres == false){
-                document.querySelectorAll(".photographer_section article")[photographers.indexOf(element)].style.display = "block"
+                document.querySelectorAll(".photographer_section article")[photographers.indexOf(element)].style.display = "initial"
             }else{
                 document.querySelectorAll(".photographer_section article")[photographers.indexOf(element)].style.display = "none"
             }
             if(criteres.length == 0){
-                document.querySelectorAll(".photographer_section article")[photographers.indexOf(element)].style.display = "block"
+                document.querySelectorAll(".photographer_section article")[photographers.indexOf(element)].style.display = "initial"
             }
         })
     }
