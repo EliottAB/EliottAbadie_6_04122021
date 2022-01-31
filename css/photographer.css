@@ -350,4 +350,21 @@ form textarea{
         width: 28em;
         height: 35em;
     }
+
+    .modal{
+        width: 29em;
+        height: 50em;
+        max-height: 90vh;
+        font-size: 1em;
+        overflow: scroll;
+    }
+
+    .closemodal{
+        top: 3em;
+        right: 1em;
+    }
+
+    .closemodal img{
+        width: 3em;
+    }
 }
