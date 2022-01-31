@@ -1,7 +1,7 @@
 let urlParameters = new URLSearchParams(window.location.search)
 let id = urlParameters.get("id")
 document.querySelector(".modal form").action = location.href
-const photographersSection = document.querySelector(".photographer_section");
+const photographersSection = document.querySelector(".photographer_section")
 const photographerHeader = document.querySelector(".photograph-header")
 const filterlist = document.querySelector(".listtri")
 const filterscontainer = document.querySelector(".filtres ul")
@@ -17,7 +17,6 @@ const mediabox = document.querySelector(".mediabox")
 const LBarrowleft = document.querySelector(".prevrow")
 const LBarrowright = document.querySelector(".nextrow")
 const LBclose = document.querySelector(".lightbox .croix")
-const main = document.querySelector("main")
 let lightboxopened = false
 let likes = []
 let titles = []
@@ -31,9 +30,9 @@ async function displayPhotographer(photographers) {
     
     photographers.forEach((photographer) => {
         if(photographer.id == id){
-            const photographerModel = photographerFactory(photographer);
-            const userSelfDOM = photographerModel.getUserCardDOM("photographer");
-            photographersSection.appendChild(userSelfDOM);
+            const photographerModel = photographerFactory(photographer)
+            const userSelfDOM = photographerModel.getUserCardDOM("photographer")
+            photographersSection.appendChild(userSelfDOM)
             
             const photographerImg = photographerHeader.appendChild(document.createElement("img"))
             photographerImg.setAttribute("src", "assets/photographers/" + photographer.portrait)
@@ -82,7 +81,7 @@ async function displayPhotographer(photographers) {
                     }
                     totallikes += media.likes
                     title.innerHTML = media.title
-                    hearts.innerHTML = media.likes + '<img src="assets/icons/redheart.png" class="redheart" alt="redheart">'
+                    hearts.innerHTML = media.likes + "<img src='assets/icons/redheart.png' class='redheart' alt='redheart'>"
                     hearts.photoid = media.id
                     hearts.setAttribute("role", "button")
                     hearts.setAttribute("aria-label", media.likes + "likes")
@@ -104,15 +103,15 @@ async function displayPhotographer(photographers) {
             })
             let fixedlikes = document.createElement("p")
             let fixedprice = document.createElement("p")
-            fixedlikes.innerHTML = totallikes + '<img src="assets/icons/blackheart.png" alt="blackheart">'
+            fixedlikes.innerHTML = totallikes + "<img src='assets/icons/blackheart.png' alt='blackheart'>"
             fixedlikes.classList.add("fixedlikes")
             fixedprice.innerHTML = photographer.price + "€ /jour"
             fixedinfos.appendChild(fixedlikes)
             fixedinfos.appendChild(fixedprice)
 
             document.querySelectorAll(".photographies article").forEach(article => {
-                tri(likes, parseInt(article.querySelector("p").innerHTML.replace('<img src="assets/icons/redheart.png" class="redheart" alt="redheart">', "")), article)
-            });
+                tri(likes, parseInt(article.querySelector("p").innerHTML.replace("<img src='assets/icons/redheart.png' class='redheart' alt='redheart'>", "")), article)
+            })
 
             //click sur le boutton like, ajoute ou retire 1
             document.querySelectorAll(".publicationhearts").forEach(element => {
@@ -127,28 +126,28 @@ async function displayPhotographer(photographers) {
                         heartchange(element)
                     }
                 })
-            });
+            })
         }
-    });
+    })
 
-};
+}
 
 function heartchange(element){
     if(element.likes == element.innerText){
-        element.innerHTML = parseInt(element.innerHTML) + 1 + '<img src="assets/icons/redheart.png" class="redheart" alt="redheart">'
+        element.innerHTML = parseInt(element.innerHTML) + 1 + "<img src='assets/icons/redheart.png' class='redheart' alt='redheart'>"
         totallikes += 1
     }else{
-        element.innerHTML = parseInt(element.innerHTML) - 1 + '<img src="assets/icons/redheart.png" class="redheart" alt="redheart">'
+        element.innerHTML = parseInt(element.innerHTML) - 1 + "<img src='assets/icons/redheart.png' class='redheart' alt='redheart'>"
         totallikes -= 1
     }
-    document.querySelector(".fixedlikes").innerHTML = totallikes + '<img src="assets/icons/blackheart.png" alt="blackheart">'
+    document.querySelector(".fixedlikes").innerHTML = totallikes + "<img src='assets/icons/blackheart.png' alt='blackheart'>"
 }
 
 async function init() {
     // Récupère les datas des photographes
-    const { photographers } = await getPhotographers();
-    displayPhotographer(photographers);
-};
+    const { photographers } = await getPhotographers()
+    displayPhotographer(photographers)
+}
 
 //au click de la liste, ferme ou ouvre, et réaffiche les bouttons de tri.
     filterlist.addEventListener("click", function(){
@@ -175,17 +174,17 @@ filter.forEach((element) =>{
         if(element.innerHTML == "Titre"){
             document.querySelectorAll(".photographies article").forEach(article => {
                 tri(titles, article.querySelector("h3").innerHTML, article)
-            });
+            })
         }
         if(element.innerHTML == "Popularité"){
             document.querySelectorAll(".photographies article").forEach(article => {       
-                tri(likes, parseInt(article.querySelector("p").innerHTML.replace('<img src="assets/icons/redheart.png" class="redheart" alt="redheart">', "")), article)
-            });
+                tri(likes, parseInt(article.querySelector("p").innerHTML.replace("<img src='assets/icons/redheart.png' class='redheart' alt='redheart'>", "")), article)
+            })
         }
         if(element.innerHTML == "Date"){
             document.querySelectorAll(".photographies article").forEach(article => {
                 tri(dates, article.date, article)
-            });
+            })
         }
         })
 })
@@ -193,7 +192,7 @@ filter.forEach((element) =>{
 function triButtonTabIndex(tabindex){
     filter.forEach(element => {
         element.tabIndex = tabindex
-    });
+    })
 }
 
 
@@ -238,7 +237,7 @@ function tri(filtre, domcompare, article){
             article.style.order = filtre.indexOf(element) + 1
             article.order = filtre.indexOf(element) + 1
         }
-    });
+    })
 
     //debug pour ne pas faire stagner le swipe des photos (l226-l239)
     document.querySelectorAll(".photographies article").forEach(article => {
@@ -251,16 +250,16 @@ function tri(filtre, domcompare, article){
         isOrderTaken()
         article.querySelectorAll("p, video, .displayedmedia").forEach(element => {
             element.tabIndex = article.order + ""
-        });
+        })
         allorders.push(article.order)
-    });
+    })
     allorders = []
 }
 
 function launchLightbox(LBdisplay, maindisplay, opened){
     document.querySelectorAll("main>*").forEach(element => {
         element.style.display = maindisplay
-    });
+    })
     document.querySelector("header").style.display = maindisplay
     lightbox.style.display = LBdisplay
     lightboxopened = opened
@@ -291,7 +290,7 @@ function swipePhoto(side){
             }
             found = true
         }
-    });
+    })
 }
 
 LBarrowleft.addEventListener("keydown", (e) => {
@@ -308,14 +307,14 @@ LBarrowright.addEventListener("keydown", (e) => {
 
 LBclose.addEventListener("keydown", (e) => {
     if(e.key == " " || e.key == "Enter"){
-        launchLightbox('', '', false)
+        launchLightbox("", "", false)
     }
 })
 
 function logFormContent(){
     document.querySelectorAll(".modal input, .modal textarea").forEach(input => {
         console.log(input.value)
-    });
+    })
 }
 
 window.addEventListener("keydown", (e) => {
