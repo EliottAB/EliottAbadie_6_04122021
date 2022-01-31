@@ -79,6 +79,7 @@ async function displayPhotographer(photographers) {
                         photo.role = "button"
                         publication.appendChild(photo)
                     }
+                    publication.title = media.title
                     totallikes += media.likes
                     title.innerHTML = media.title
                     hearts.innerHTML = media.likes + "<img src='assets/icons/redheart.png' class='redheart' alt='redheart'>"
@@ -271,6 +272,8 @@ function displayMedia(type, src, article){
     copymedia = document.createElement(type)
     copymedia.order = article.order
     copymedia.src = src
+    copymedia.alt = article.title
+    copymedia.tabIndex = 0
     if(type == "video"){
         copymedia.controls = true
     }
