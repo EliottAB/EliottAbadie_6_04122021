@@ -107,6 +107,9 @@ async function displayPhotographer(photographers) {
             fixedlikes.innerHTML = totallikes + "<img src='assets/icons/blackheart.png' alt='blackheart'>"
             fixedlikes.classList.add("fixedlikes")
             fixedprice.innerHTML = photographer.price + "€ /jour"
+            fixedlikes.tabIndex = 1
+            fixedlikes.setAttribute("aria-label", "total likes")
+            fixedprice.tabIndex = 1
             fixedinfos.appendChild(fixedlikes)
             fixedinfos.appendChild(fixedprice)
 
@@ -250,7 +253,7 @@ function tri(filtre, domcompare, article){
         }
         isOrderTaken()
         article.querySelectorAll("p, video, .displayedmedia").forEach(element => {
-            element.tabIndex = article.order + ""
+            element.tabIndex = article.order + 1
         })
         allorders.push(article.order)
     })

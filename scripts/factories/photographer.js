@@ -82,7 +82,7 @@ async function getPhotographers() {
                     let button = section.appendChild(document.createElement("button"))
                 button.innerHTML = categories[x]
                 button.classList.add("categorie")
-                button.tabIndex = "-1"
+
                 buttonEvent(button)
                 }
                 if(headtaged == false){
