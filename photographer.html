@@ -26,15 +26,15 @@
           <form method="post">
             <div>
               <label for="firstname">Prénom</label>
-              <input id="firstname" type="text" required tabindex="1">
+              <input id="firstname" type="text" tabindex="1">
               <label for="lastname">Nom</label>
-              <input id="lastname" type="text" required tabindex="1">
+              <input id="lastname" type="text" tabindex="1">
               <label for="email">Email</label>
-              <input id="email" type="email" required tabindex="1">
+              <input id="email" type="email" tabindex="1">
               <label for="message">Message</label>
-              <textarea id="message" rows="6" required tabindex="1"></textarea>
+              <textarea id="message" rows="6" tabindex="1"></textarea>
             </div>
-            <button class="contact_button" onclick="logFormContent()" tabindex="1">Envoyer</button>
+            <button type="button" class="contact_button" onclick="send()" tabindex="1">Envoyer</button>
             <button type="button" onclick="closeModal()" class="closemodal" tabindex="1"><img src="assets/icons/close.svg" alt="croix"></button>
           </form>
         </div>

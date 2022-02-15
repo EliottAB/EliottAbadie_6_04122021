@@ -12,3 +12,12 @@ async function init() {
     const { photographers } = await getPhotographers()
     displayData(photographers)
 }
+
+let tocontent = document.querySelector(".tocontent")
+window.addEventListener("scroll", function(e) {
+    if (scrollY <=10) {
+        tocontent.style.display = "none"
+    }else{
+        tocontent.style.display = "initial"
+    }
+})
